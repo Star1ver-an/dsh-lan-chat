@@ -13,7 +13,7 @@
   max-height: calc(100% - 72px);
   overflow: hidden;
   border-radius: 20px;
-  background: var(--dsw-specific-menu);
+  background: var(--dsw-alias-bg-layer-2, #ffffff);
   --dsw-elevation-stroke-color: var(--dsw-alias-border-l1);
   box-shadow: var(--dsw-elevation-prominent);
   color: var(--dsw-alias-label-primary);

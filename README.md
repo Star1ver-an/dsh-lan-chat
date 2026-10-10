@@ -10,18 +10,22 @@
 2. 打开左侧「插件」→ 安装，在包地址输入框粘贴：
 
 ```text
-https://github.com/Star1ver-an/dsh-lan-chat/releases/download/v0.1.0/dsh-local-lan-chat-0.1.0.tgz
+https://github.com/Star1ver-an/dsh-lan-chat/releases/download/v0.1.1/dsh-local-lan-chat-0.1.1.tgz
 ```
 
 3. 安装并启用；如果提示重启，从「应用 → 退出」完全退出，再打开 DSH。左下角会出现「好友」。
 
-若设备不能直接下载 GitHub Release，可先从 [Releases](https://github.com/Star1ver-an/dsh-lan-chat/releases/tag/v0.1.0) 下载 tgz，再把它的**本机绝对路径**粘贴到安装输入框。也支持从 GitHub 标签安装：
+若设备不能直接下载 GitHub Release，可先从 [Releases](https://github.com/Star1ver-an/dsh-lan-chat/releases/tag/v0.1.1) 下载 tgz，再把它的**本机绝对路径**粘贴到安装输入框。也支持从 GitHub 标签安装：
 
 ```text
-github:Star1ver-an/dsh-lan-chat#v0.1.0
+github:Star1ver-an/dsh-lan-chat#v0.1.1
 ```
 
 仓库和安装包已包含构建后的 `lib/`，安装无需 Node.js 开发环境，也无需执行构建脚本。另一个插件见 [德州扑克](https://github.com/Star1ver-an/dsh-poker)，两者互不依赖。个人数据和服务地址不包含在仓库或安装包中。
+
+## 本次界面修复
+
+好友浮层使用不透明的主题背景，避免底部入口透出并遮挡好友内容。
 
 ## 使用
 
