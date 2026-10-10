@@ -1,10 +1,12 @@
 /** Copy dictionaries for the friend chat panel. */
 
 /** Dictionary namespace owned by this plugin. */
+import { updateZh, updateEn } from '../update/locales.ts'
 export const NS = 'friends'
 
 /** Simplified Chinese dictionary and key source of truth. */
 export const zh = {
+  ...updateZh,
   'trigger.label': '好友',
   'trigger.aria': '好友与局域网聊天',
   'panel.title': '好友',
@@ -45,6 +47,7 @@ export type FriendsKey = keyof typeof zh
 
 /** English dictionary checked against the Chinese key set. */
 export const en = {
+  ...updateEn,
   'trigger.label': 'Friends',
   'trigger.aria': 'Friends and LAN chat',
   'panel.title': 'Friends',

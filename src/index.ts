@@ -5,6 +5,7 @@ import { ChatLan } from './lan/index.ts'
 import ChatController from './controller/index.ts'
 import * as commands from './commands/index.ts'
 import * as tools from './tools/index.ts'
+import { PluginUpdater } from './update/host.ts'
 
 export const inject = ['agents', 'storageDomain', 'sessionProjections', 'typert', 'commands', 'tools']
 export const Config = s.object({
@@ -16,6 +17,7 @@ export const Config = s.object({
 })
 
 export function apply(ctx, config) {
+  ctx.plugin(PluginUpdater)
   ctx.plugin(ChatRuntime, config)
   ctx.plugin(ChatLan, config.lan)
   ctx.plugin(ChatController)

@@ -21,9 +21,12 @@ import type { FriendsCatalog } from './friends.ts'
 import type { createFriendsStore } from './stores.ts'
 import type { FriendsKey } from './locales.ts'
 import css from './FriendsPanel.module.css'
+import { UpdatePanel } from '../update/UpdatePanel.tsx'
+import type { UpdateClient } from '../update/client.ts'
 
 /** Injected share: the catalog hook and every verb the panel can invoke. */
 export type FriendsPanelInjected = {
+  updates: UpdateClient
   hooks: {
     /** The chat catalog. */
     catalog: FriendsCatalog
@@ -329,7 +332,7 @@ function IdentityTag({ identity, onBeginRename, t }: {
 export function FriendsPanel({
   useCatalog, useStore, actions,
   markRead, loadThread, send, requestPairing, respondPairing, removeFriend, setDisplayName,
-  t,
+  t, updates,
 }: FriendsPanelProps) {
   const catalog = useCatalog(snapshot => snapshot)
   const open = useStore(state => state.open)
@@ -337,6 +340,9 @@ export function FriendsPanel({
   const drafts = useStore(state => state.drafts)
   const [renamingSelf, setRenamingSelf] = useState(false)
   const [selfNameDraft, setSelfNameDraft] = useState('')
+  useEffect(() => {
+    updates.safety(!catalog.ready || Object.values(drafts).some(text => text.trim()) || renamingSelf || catalog.pending.length > 0, open)
+  }, [updates, catalog.ready, drafts, renamingSelf, catalog.pending.length, open])
 
   // Loading a thread also reads it: unread zeroes while the panel shows the
   // thread, and clears on close so later rows count as unread again.
@@ -452,6 +458,8 @@ export function FriendsPanel({
           <IconCloseOutlineRegular size={14} />
         </button>
       </header>
+
+      <UpdatePanel client={updates} t={t} />
 
       {renamingSelf && (
         <div className={css.renameRow} data-friends-rename-self="">

@@ -22,6 +22,7 @@ import { FriendsPanel, type FriendsPanelInjected } from './FriendsPanel.tsx'
 import { createFriendsCatalog, type FriendsCatalog, type FriendsCatalogPort } from './friends.ts'
 import { createFriendsStore } from './stores.ts'
 import { en, NS, zh, type FriendsKey } from './locales.ts'
+import { UpdateClient } from '../update/client.ts'
 
 export type { FriendsActionInjected, FriendsActionProps } from './FriendsAction.tsx'
 export type { FriendsPanelInjected, FriendsPanelProps } from './FriendsPanel.tsx'
@@ -39,7 +40,7 @@ declare module '@deepseek-ai/dsh-client-ui-slots' {
 }
 
 /** Services required by the two slot registrations and the chat Remote face. */
-export const inject = ['slots', 'locale', 'remote', 'remote.chat']
+export const inject = ['slots', 'locale', 'remote', 'remote.chat', 'remote.lanChatUpdates']
 
 /** The client sees the wire views' plain id strings; the Remote face brands them. */
 const asPeer = (peerId: string): PeerId => peerId as PeerId
@@ -123,6 +124,8 @@ function followChat(ctx: ClientContext, catalog: FriendsCatalog): () => void {
  * @param ctx - client root context.
  */
 export function apply(ctx: ClientContext): void {
+  const updates = new UpdateClient(ctx.remote.lanChatUpdates)
+  ctx.effect(() => updates.start(), 'friends: update status')
   ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'ui-friends: dictionaries')
 
   const catalog = createFriendsCatalog(chatPort(ctx), (error) => {
@@ -148,14 +151,15 @@ export function apply(ctx: ClientContext): void {
     locale: NS,
     store,
     inject: (): FriendsPanelInjected => ({
+      updates,
       hooks: { catalog },
       markRead: (peerId) => { catalog.markRead(peerId) },
       loadThread: (peerId) => { catalog.loadThread(peerId) },
-      send: (peerId, text) => catalog.send(peerId, text),
-      requestPairing: peerId => catalog.requestPairing(peerId),
-      respondPairing: (peerId, accept) => catalog.respondPairing(peerId, accept),
-      removeFriend: peerId => catalog.removeFriend(peerId),
-      setDisplayName: name => catalog.setDisplayName(name),
+      send: (peerId, text) => updates.during(() => catalog.send(peerId, text)),
+      requestPairing: peerId => updates.during(() => catalog.requestPairing(peerId)),
+      respondPairing: (peerId, accept) => updates.during(() => catalog.respondPairing(peerId, accept)),
+      removeFriend: peerId => updates.during(() => catalog.removeFriend(peerId)),
+      setDisplayName: name => updates.during(() => catalog.setDisplayName(name)),
     }),
   }, FriendsPanel))
 }

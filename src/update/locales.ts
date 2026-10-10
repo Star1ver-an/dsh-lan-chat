@@ -1,0 +1,31 @@
+export const updateZh = {
+  'update.title':'插件更新', 'update.check':'检查更新', 'update.install':'安装新版',
+  'update.auto':'空闲时自动更新', 'update.autoHint':'关闭插件面板且空闲两分钟后安装；不会自动重启 DSH。',
+  'update.ready':'发现新版', 'update.current':'当前版本', 'update.none':'已是最新版本',
+  'update.checking':'正在检查…', 'update.installing':'正在下载并安装…',
+  'update.restart':'安装完成，请在方便时完全退出并重新打开 DSH。',
+  'update.notes':'更新说明', 'update.unchecked':'启动后自动检查，每六小时再次检查。',
+  'update.network':'检查失败，请检查 GitHub 网络连接后重试。',
+  'update.service':'更新服务尚未就绪，请重启 DSH 后重试。',
+  'update.incompatible':'新版与当前 DSH 版本不兼容，暂不安装。',
+  'update.failed':'安装未完成，请检查网络与插件管理器后重试。',
+  'update.busy':'当前仍有牌桌、草稿或待处理操作，更新已延后。',
+  'update.sharing':'本机正在共享牌桌服务。请在所有玩家离桌后停止共享，再安装更新。',
+  'update.unknown':'正在确认各窗口是否空闲；状态未确认时不会安装。',
+} as const
+export type UpdateKey = keyof typeof updateZh
+export const updateEn: Record<UpdateKey, string> = {
+  'update.title':'Plugin updates', 'update.check':'Check for updates', 'update.install':'Install update',
+  'update.auto':'Update automatically when idle', 'update.autoHint':'Install after the panel has been closed and idle for two minutes. DSH is never restarted automatically.',
+  'update.ready':'New version', 'update.current':'Current version', 'update.none':'Up to date',
+  'update.checking':'Checking…', 'update.installing':'Downloading and installing…',
+  'update.restart':'Installed. Fully quit and reopen DSH when convenient.',
+  'update.notes':'Release notes', 'update.unchecked':'Checks on startup and every six hours.',
+  'update.network':'Check failed. Verify access to GitHub and try again.',
+  'update.service':'Update service is not ready. Restart DSH and try again.',
+  'update.incompatible':'This release is incompatible with your DSH version.',
+  'update.failed':'Installation did not complete. Check the network and plugin manager, then retry.',
+  'update.busy':'A table, draft or pending operation is still active. Update deferred.',
+  'update.sharing':'This device is sharing the poker service. Stop sharing after all players leave, then install.',
+  'update.unknown':'Waiting for every window to confirm that it is idle.',
+}

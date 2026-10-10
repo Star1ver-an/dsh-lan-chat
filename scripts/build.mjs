@@ -35,7 +35,7 @@ function cssModules(styles) {
   const manifest = JSON.parse(await readFile(resolve(root,'package.json'),'utf8'))
   await mkdir(resolve(root,'lib'),{recursive:true})
   const base = {bundle:true,logLevel:'info',target:'es2022',nodePaths:[runtime],tsconfigRaw:{compilerOptions:{jsx:'react-jsx'}}}
-  const typert = folder === 'lan-chat' ? 'src/generated/chat.host.js' : 'src/remote.ts'
+  const typert = 'src/typert.ts'
   for (const [entry,out] of [['src/index.ts','index.js'],[typert,'typert.js']]) {
     await build({...base,entryPoints:[resolve(root,entry)],outfile:resolve(root,'lib',out),platform:'node',format:'esm',banner:{js:'import { createRequire as __createRequire } from "node:module"; const require = __createRequire(import.meta.url);'},plugins:[resolver(false)]})
   }

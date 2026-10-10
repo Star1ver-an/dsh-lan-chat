@@ -4,21 +4,34 @@
 
 已验证环境：官方 **DSH Desktop 0.2.0-rc.2 / Windows x64**。其他系统尚未实机验证，升级 DSH 版本前请检查 peerDependencies 的兼容要求。
 
+## 插件更新
+
+首次安装本版后完全退出并重新打开 DSH，之后在插件面板的「插件更新」中查看版本和更新说明，或点击「检查更新」「安装新版」。旧版插件需先手动安装一次本版，才能获得更新功能。
+
+- 启动时检查 GitHub 最新正式 Release，此后每六小时检查；不会上传账号、好友、牌局或消息内容。
+- 「空闲时自动更新」默认关闭，设置仅保存在当前设备、当前插件中。开启后，所有窗口关闭该插件面板且空闲两分钟才安装。
+- 牌桌有座位、交易未确认、聊天有草稿或配对未处理时延后更新。共享主机还需在所有玩家离桌后停止共享；更新后重新开启共享。
+- 校验版本、适配的 DSH 版本和下载包 SHA-256；不自动降级、不安装预发布版。无法连接 GitHub 时保留现有版本，可手动重试。
+- 安装使用官方插件管理器，不自动批准依赖构建脚本，不自动重启 DSH。提示重启时请在方便时完全退出再打开；扑克登录需重新进行。
+- 下载包保存在用户目录 `.dsh/plugin-update-cache`，供包管理器后续解析已安装依赖使用。
+
+后续发版时先构建、打包，运行 `node scripts/release-metadata.mjs <tgz路径>`，将生成的 `update.json`、`SHA256SUMS.txt` 和 tgz 一起上传到对应版本的 GitHub Release。先上传完整草稿再发布，避免客户端读到不完整版本。版本标签必须是 `v主版本.次版本.修订号`，归档文件名随版本更新。
+
 ## 在另一台设备安装
 
 1. 安装并打开对应版本的官方 DSH Desktop。
 2. 打开左侧「插件」→ 安装，在包地址输入框粘贴：
 
 ```text
-https://github.com/Star1ver-an/dsh-lan-chat/releases/download/v0.1.1/dsh-local-lan-chat-0.1.1.tgz
+https://github.com/Star1ver-an/dsh-lan-chat/releases/download/v0.2.0/dsh-local-lan-chat-0.2.0.tgz
 ```
 
 3. 安装并启用；如果提示重启，从「应用 → 退出」完全退出，再打开 DSH。左下角会出现「好友」。
 
-若设备不能直接下载 GitHub Release，可先从 [Releases](https://github.com/Star1ver-an/dsh-lan-chat/releases/tag/v0.1.1) 下载 tgz，再把它的**本机绝对路径**粘贴到安装输入框。也支持从 GitHub 标签安装：
+若设备不能直接下载 GitHub Release，可先从 [Releases](https://github.com/Star1ver-an/dsh-lan-chat/releases/tag/v0.2.0) 下载 tgz，再把它的**本机绝对路径**粘贴到安装输入框。也支持从 GitHub 标签安装：
 
 ```text
-github:Star1ver-an/dsh-lan-chat#v0.1.1
+github:Star1ver-an/dsh-lan-chat#v0.2.0
 ```
 
 仓库和安装包已包含构建后的 `lib/`，安装无需 Node.js 开发环境，也无需执行构建脚本。另一个插件见 [德州扑克](https://github.com/Star1ver-an/dsh-poker)，两者互不依赖。个人数据和服务地址不包含在仓库或安装包中。
