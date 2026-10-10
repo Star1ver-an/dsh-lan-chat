@@ -1,0 +1,8 @@
+- insert:
+    - id: local-lan-chat
+      name: '@dsh-local/lan-chat'
+      config:
+        injectInto: latest
+        tools: true
+        lan:
+          enabled: true

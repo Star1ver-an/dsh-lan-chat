@@ -1,0 +1,304 @@
+/* Friends overlay panel: elevated surface over the frame's bottom-left,
+ * matching the Menu/popupSelect surface family (hairline stroke in shadow). */
+
+.panel {
+  position: absolute;
+  left: 8px;
+  bottom: 52px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  width: 360px;
+  max-width: calc(100% - 16px);
+  max-height: calc(100% - 72px);
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--dsw-specific-menu);
+  --dsw-elevation-stroke-color: var(--dsw-alias-border-l1);
+  box-shadow: var(--dsw-elevation-prominent);
+  color: var(--dsw-alias-label-primary);
+  /* Elevated surface: the scrolling roster/thread rebinds the scrollbar
+   * indirection to the l2 elevation tokens (ui-theme scrollbar contract). */
+  --dsh-scrollbar-thumb: var(--dsw-alias-scrollbar-bg-l2);
+  --dsh-scrollbar-thumb-hover: var(--dsw-alias-scrollbar-hover-l2);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px 8px;
+}
+
+.headerTitle {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.headerIdentity {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+  justify-content: flex-end;
+  font-size: 12px;
+  color: var(--dsw-alias-label-tertiary);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.renameRow {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 0 14px 8px;
+}
+
+.renameRow > :first-child {
+  flex: 1;
+}
+
+.actionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--dsw-alias-label-tertiary);
+  cursor: pointer;
+}
+
+.actionIcon:hover:not(:disabled) {
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-primary);
+}
+
+.actionIcon:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.actionAccept {
+  color: var(--dsw-alias-state-business-primary);
+}
+
+/* ---- Roster ---- */
+
+.roster {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 4px 8px 10px;
+  overflow-y: auto;
+}
+
+.sectionHeading {
+  margin: 0;
+  padding: 0 6px 4px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--dsw-alias-label-caption);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+}
+
+.row:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+}
+
+.rowBody {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.rowName {
+  overflow: hidden;
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.rowStatus {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--dsw-alias-label-caption);
+}
+
+.unreadBadge {
+  flex-shrink: 0;
+  min-width: 16px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  background: var(--dsw-alias-state-error-primary);
+  color: var(--dsw-alias-label-primary);
+  font-size: 11px;
+  line-height: 14px;
+  text-align: center;
+}
+
+.rowActions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2px;
+  padding-right: 4px;
+}
+
+.confirmText {
+  font-size: 11px;
+  color: var(--dsw-alias-label-secondary);
+}
+
+.notice {
+  margin: 0;
+  padding: 6px;
+  font-size: 12px;
+  color: var(--dsw-alias-label-tertiary);
+}
+
+/* ---- Thread view ---- */
+
+.thread {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.threadHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 8px;
+  border-bottom: 0.5px solid var(--dsw-alias-border-l2);
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--dsw-alias-label-secondary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  background: var(--dsw-alias-interactive-bg-hover);
+  color: var(--dsw-alias-label-primary);
+}
+
+.threadName {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.fingerprint {
+  margin-left: auto;
+  font-family: var(--dsw-font-mono, monospace);
+  font-size: 10px;
+  color: var(--dsw-alias-label-caption);
+  cursor: help;
+}
+
+.messageList {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 160px;
+  margin: 0;
+  padding: 10px 14px;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.bubble {
+  display: flex;
+  max-width: 78%;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.bubbleIn {
+  align-self: flex-start;
+  background: var(--dsw-alias-interactive-bg-hover);
+  border-bottom-left-radius: 4px;
+}
+
+.bubbleOut {
+  align-self: flex-end;
+  background: var(--dsw-alias-state-business-primary);
+  color: var(--dsw-alias-label-primary);
+  border-bottom-right-radius: 4px;
+}
+
+.bubbleText {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.composer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 10px 10px;
+}
+
+.sendError {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 11px;
+  color: var(--dsw-alias-state-error-primary);
+}
+
+.composerRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.composerInput {
+  flex: 1;
+}

@@ -1,0 +1,81 @@
+/** Copy dictionaries for the friend chat panel. */
+
+/** Dictionary namespace owned by this plugin. */
+export const NS = 'friends'
+
+/** Simplified Chinese dictionary and key source of truth. */
+export const zh = {
+  'trigger.label': '好友',
+  'trigger.aria': '好友与局域网聊天',
+  'panel.title': '好友',
+  'panel.close': '关闭面板',
+  'panel.loading': '正在读取好友…',
+  'panel.readFailed': '读取好友失败：{message}',
+  'panel.empty': '局域网中还没有好友。',
+  'panel.identity': '我在此设备上是 {name}',
+  'panel.renameSelf': '修改我的显示名',
+  'panel.renameSelf.hint': '输入新的显示名',
+  'panel.renameSelf.confirm': '确定',
+  'panel.renameSelf.cancel': '取消',
+  'section.friends': '好友',
+  'section.pending': '待确认配对',
+  'section.discovered': '发现的设备',
+  'friend.online': '在线',
+  'friend.offline': '离线',
+  'friend.fingerprint': '配对指纹 {fingerprint}',
+  'friend.remove': '删除好友',
+  'friend.remove.confirm': '确认删除 {name}？',
+  'friend.unread': '{count} 条未读',
+  'pending.incoming': '{name} 请求与你配对',
+  'pending.outgoing': '等待 {name} 确认',
+  'pending.accept': '接受',
+  'pending.decline': '拒绝',
+  'pending.cancel': '取消请求',
+  'discovered.add': '添加为好友',
+  'thread.empty': '还没有消息，发一条试试。',
+  'thread.back': '返回好友列表',
+  'thread.loading': '正在读取消息…',
+  'composer.placeholder': '发给 {name}…',
+  'composer.send': '发送',
+  'composer.sendFailed': '发送失败：{message}',
+} satisfies Record<string, string>
+
+/** Friend chat locale key union. */
+export type FriendsKey = keyof typeof zh
+
+/** English dictionary checked against the Chinese key set. */
+export const en = {
+  'trigger.label': 'Friends',
+  'trigger.aria': 'Friends and LAN chat',
+  'panel.title': 'Friends',
+  'panel.close': 'Close panel',
+  'panel.loading': 'Reading friends…',
+  'panel.readFailed': 'Failed to read friends: {message}',
+  'panel.empty': 'No friends on this network yet.',
+  'panel.identity': 'I appear as {name} on this device',
+  'panel.renameSelf': 'Rename my display name',
+  'panel.renameSelf.hint': 'Enter a new display name',
+  'panel.renameSelf.confirm': 'Confirm',
+  'panel.renameSelf.cancel': 'Cancel',
+  'section.friends': 'Friends',
+  'section.pending': 'Pending pairings',
+  'section.discovered': 'Discovered devices',
+  'friend.online': 'Online',
+  'friend.offline': 'Offline',
+  'friend.fingerprint': 'Pairing fingerprint {fingerprint}',
+  'friend.remove': 'Remove friend',
+  'friend.remove.confirm': 'Remove {name}?',
+  'friend.unread': '{count} unread',
+  'pending.incoming': '{name} wants to pair with you',
+  'pending.outgoing': 'Waiting for {name} to confirm',
+  'pending.accept': 'Accept',
+  'pending.decline': 'Decline',
+  'pending.cancel': 'Cancel request',
+  'discovered.add': 'Add as friend',
+  'thread.empty': 'No messages yet. Say hi.',
+  'thread.back': 'Back to friend list',
+  'thread.loading': 'Reading messages…',
+  'composer.placeholder': 'Message {name}…',
+  'composer.send': 'Send',
+  'composer.sendFailed': 'Send failed: {message}',
+} satisfies Record<FriendsKey, string>

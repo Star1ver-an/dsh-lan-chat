@@ -1,0 +1,72 @@
+{
+  "name": "@dsh-local/lan-chat",
+  "version": "0.1.0",
+  "description": "局域网好友聊天、配对、消息记录与 AI 聊天工具",
+  "type": "module",
+  "license": "MIT",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./typert": "./lib/typert.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "lib",
+    "locale",
+    "cordis.patch.yml",
+    "README.md",
+    "THIRD_PARTY_NOTICES.txt"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/schemastery": "3.18.4",
+    "@deepseek-ai/cordis": "4.0.4",
+    "@deepseek-ai/dsh-brand": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-llm": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-util-crypto": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-storage-domain": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.0-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.0-rc.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Star1ver-an/dsh-lan-chat.git"
+  },
+  "homepage": "https://github.com/Star1ver-an/dsh-lan-chat#readme",
+  "bugs": {
+    "url": "https://github.com/Star1ver-an/dsh-lan-chat/issues"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "prepare:sdk": "node scripts/prepare-runtime.mjs"
+  },
+  "devDependencies": {
+    "@electron/asar": "3.4.1",
+    "clsx": "2.1.1",
+    "esbuild": "0.25.0",
+    "immer": "10.1.1",
+    "lightningcss": "1.33.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.9.2",
+    "vitest": "3.2.7",
+    "zod": "4.6.5",
+    "zustand": "5.0.15"
+  }
+}
